@@ -5,6 +5,7 @@ import { ResourceLoader } from './components/resource-loader';
 import { BookInfo } from './components/book-info';
 import { DataSource } from './components/data-source';
 import axios from 'axios';
+import { DataSourceWithRender } from './components/data-source-with-render';
 
 const getDataFromServer = async (url) => {
   const response = await axios.get(url);
@@ -14,12 +15,10 @@ const getDataFromServer = async (url) => {
 function App() {
   return (
     <>
-      <DataSource
+      <DataSourceWithRender
         getData={() => getDataFromServer('/users/3')}
-        resourceName="user"
-      >
-        <UserInfo />
-      </DataSource>
+        render={(resource) => <UserInfo user={resource} />}
+      ></DataSourceWithRender>
     </>
   );
 }
