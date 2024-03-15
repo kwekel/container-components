@@ -1,4 +1,5 @@
 # Container Components
+This is a React project
 
 ## Installing packages:
 
