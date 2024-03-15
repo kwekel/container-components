@@ -12,13 +12,21 @@ const getDataFromServer = async (url) => {
   return response.data;
 };
 
+const getDataFromLocalStorage = (key) => () => {
+  return localStorage.getItem(key);
+};
+
+const Message = ({ msg }) => <h1>{msg}</h1>;
+
 function App() {
   return (
     <>
-      <DataSourceWithRender
-        getData={() => getDataFromServer('/users/3')}
-        render={(resource) => <UserInfo user={resource} />}
-      ></DataSourceWithRender>
+      <DataSource
+        getData={() => getDataFromLocalStorage('test')}
+        resourceName={'msg'}
+      >
+      <Message />
+      </DataSource>
     </>
   );
 }
